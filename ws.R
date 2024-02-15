@@ -1,4 +1,3 @@
-s$stop()
 # install.packages(c("httpuv", "jsonlite"))
 library(httpuv)
 library(jsonlite)
@@ -29,5 +28,8 @@ s <- startServer("0.0.0.0", 8080, list(
 	)
 )
 
-cat("WebSocket server is running on port 8080\n")
+if (exists("s")) {
+	s$stop()
+}
 httpuv::service()
+cat("WebSocket server is running on port 8080\n")
